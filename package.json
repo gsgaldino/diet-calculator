@@ -1,0 +1,70 @@
+{
+  "name": "diet-calculator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gabriel Soares",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "node src/main.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "globals": "^15.9.0",
+    "prettier": "^3.0.3"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "env": {
+      "commonjs": true,
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "prettier",
+      "eslint:recommended"
+    ],
+    "root": true,
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ],
+      "semi": [
+        2,
+        "always"
+      ],
+      "no-trailing-spaces": "error",
+      "quotes": [
+        2,
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
+      "no-underscore-dangle": "off",
+      "class-methods-use-this": "off",
+      "no-param-reassign": "off",
+      "import/first": "off",
+      "import/order": "off",
+      "linebreak-style": "off",
+      "no-restricted-syntax": "off",
+      "no-await-in-loop": "off"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "endOfLine": "auto",
+    "semi": true
+  }
+}
