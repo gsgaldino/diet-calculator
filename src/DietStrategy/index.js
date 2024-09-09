@@ -1,9 +1,9 @@
-const { HarrisBenedict } = require('./types');
+import { HarrisBenedict } from './types/index.js';
 
-class DietStrategy {
+export class DietStrategy {
   constructor() {
     this.diets = new Map();
-    this.diets.set('Harris-Benedict', new HarrisBenedict())
+    this.diets.set('Harris-Benedict', new HarrisBenedict());
   }
 
   getDiet(type) {
@@ -15,5 +15,3 @@ class DietStrategy {
     return diet.calculate(params);
   }
 }
-
-module.exports = { DietStrategy };

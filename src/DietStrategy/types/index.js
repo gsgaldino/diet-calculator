@@ -1,3 +1,1 @@
-const { HarrisBenedict } = require('./HarrisBenedict');
-
-module.exports = { HarrisBenedict };
+export { HarrisBenedict } from './HarrisBenedict.js';

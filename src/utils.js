@@ -1,4 +1,4 @@
-const readline = require('readline');
+import readline from 'readline';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -6,7 +6,9 @@ const rl = readline.createInterface({
 });
 
 class AskQuestion {
-  close() { rl.close() }
+  close() {
+    rl.close();
+  }
 
   ask(question) {
     return new Promise((resolve) => {
@@ -21,4 +23,5 @@ class AskQuestion {
   }
 }
 
-module.exports = { askQuestion: new AskQuestion() };
+const askQuestion = new AskQuestion();
+export { askQuestion };

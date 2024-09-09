@@ -1,5 +1,5 @@
-const { DietStrategy } = require('./DietStrategy');
-const { askQuestion } = require('./utils');
+import { DietStrategy } from './DietStrategy/index.js';
+import { askQuestion } from './utils.js';
 
 const main = async () => {
   const weight = await askQuestion.ask('Qual seu peso?\n');
@@ -15,4 +15,3 @@ const main = async () => {
 };
 
 main();
-

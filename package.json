@@ -4,28 +4,41 @@
   "main": "index.js",
   "author": "Gabriel Soares",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node src/main.js",
-    "dev": "node src/main.js"
+    "dev": "node src/main.js",
+    "test": "jest"
   },
   "devDependencies": {
-    "eslint": "^9.9.1",
+    "@babel/preset-env": "^7.25.4",
+    "babel-jest": "^29.7.0",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^27.1.6",
     "eslint-plugin-prettier": "^5.0.0",
     "globals": "^15.9.0",
     "prettier": "^3.0.3"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
   "eslintConfig": {
     "parserOptions": {
-      "ecmaVersion": 2020
+      "ecmaVersion": 2020,
+      "sourceType": "module"
     },
     "plugins": [
-      "prettier"
+      "prettier",
+      "eslint-plugin-jest"
     ],
     "env": {
-      "commonjs": true,
       "node": true,
-      "es6": true
+      "es6": true,
+      "jest": true
     },
     "extends": [
       "prettier",
@@ -66,5 +79,8 @@
     "trailingComma": "es5",
     "endOfLine": "auto",
     "semi": true
+  },
+  "dependencies": {
+    "jest": "^29.7.0"
   }
 }
