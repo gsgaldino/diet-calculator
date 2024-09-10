@@ -1,6 +1,9 @@
+import { DietSuggestion } from '../../DietSuggestion.js';
+
 export class HarrisBenedict {
-  calculate({ weight, age, gender, height }) {
-    const functionConstants = {
+  constructor() {
+    this.dietSuggestion = new DietSuggestion();
+    this.functionConstants = {
       male: {
         weight: 13.75,
         height: 5,
@@ -13,16 +16,51 @@ export class HarrisBenedict {
         age: 4.68,
         constant: 65.71,
       },
+      activityFactor: {
+        mild: 1.3,
+        moderate: 1.5,
+        high: 1.7,
+      },
     };
+  }
+
+  getRoundedBasalMetabolicRate(basalMetabolicRate) {
+    return Math.round(basalMetabolicRate / 100) * 100;
+  }
+
+  getTotalMetabolicRate(basalMetabolicRate, activityFactor) {
+    const userActivityFactor = activityFactor
+      ? this.functionConstants.activityFactor[activityFactor]
+      : this.functionConstants.activityFactor.mild;
+    return basalMetabolicRate * userActivityFactor;
+  }
+
+  calculate({ weight, age, gender, height, activityFactor }) {
     const constants =
       gender.toLowerCase() === 'm'
-        ? functionConstants['male']
-        : functionConstants['female'];
+        ? this.functionConstants.male
+        : this.functionConstants.female;
     const weightResult = constants.weight * weight;
     const heightResult = constants.height * height;
     const ageResult = constants.age * age;
     const basalMetabolicRate =
       weightResult + heightResult - ageResult + constants.constant;
-    return { basalMetabolicRate: basalMetabolicRate };
+    const roundedBasalMetabolicRate =
+      this.getRoundedBasalMetabolicRate(basalMetabolicRate);
+    const totalMetabolicRate = this.getTotalMetabolicRate(
+      roundedBasalMetabolicRate,
+      activityFactor
+    );
+
+    return {
+      basalMetabolicRate,
+      roundedBasalMetabolicRate,
+      totalMetabolicRate,
+      diet: this.dietSuggestion.calculate({
+        totalMetabolicRate,
+        caloricDeficit: 400,
+        weight,
+      }),
+    };
   }
 }
